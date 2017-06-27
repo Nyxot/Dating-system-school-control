@@ -1,0 +1,164 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Edcore</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/ico" href="~/Images/Icons/logo_2.png" />
+    <link href="~/CSS/MasterCSS3.css" rel="stylesheet" />
+    <link href="~/CSS/CustomMasterCSS2.css" rel="stylesheet" />
+    <%--<script type="text/javascript" src='js/jquery.min.js'></script>
+    <script type="text/javascript" src='js/general.js'></script>
+    <script type="text/javascript" src='js/bootstrap.min.js'></script>--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <telerik:RadScriptManager runat="server" ID="RadScriptManager1" />
+        <telerik:RadSkinManager ID="RadSkinManager1" runat="server" ShowChooser="false" />
+        <div class="containerMain">
+            <div>
+                <nav class="navbar navbar-default navbar-fixed-top" style="padding-bottom: 5px; padding-top: 5px;">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/ControlCitas.aspx">
+                                <asp:Image ID="Image1" runat="server" ImageUrl="Images/logo.png" BorderStyle="None" Style="float: left; width: 170px; margin-left: 20px; margin-top: 5px;" />
+                            </asp:HyperLink>
+                            <h1 class="NavBar-HeadTitle"></h1>
+
+                            <div runat="server" id="login" class="dropdown" style="float: right; margin: 5px 6px 0px; width: initial;">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="height: 36px; font-weight: bold;">
+                                    <img id="usericon" runat="server" src="Images/Icons/user.png" alt="" />
+                                    <asp:Label ID="lblUser_Login" runat="server"></asp:Label>
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="user-dp dropdown-menu" style="margin-top: 16px;">
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="logout-nav">
+                                                    <div class="form-group">
+                                                        <h5 class="h-LoginField">N° Control :</h5>
+                                                        <asp:Label ID="lblNTUser" runat="server" ForeColor="#008A5E"></asp:Label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <h5 class="h-LoginField">Nombre :</h5>
+                                                        <asp:Label ID="lblNameUser" runat="server" ForeColor="#008A5E"></asp:Label>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <asp:Button ID="LogoutButton" runat="server" Text="Log out" CssClass="btn btn-primary btn-block" OnClick="LogoutButton_Click" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="javascript:void(0);" class="menuBtn" id="phoneMenu" style="padding-top: 10px; margin-right: 5px; display: inline-block">
+                                <span class="menuBar">
+                                    <i></i>
+                                    <i></i>
+                                    <i></i>
+                                </span>
+                                <span class="menuText">MENU</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="subMenu container-fluid" id="subMenu">
+
+                        <asp:UpdatePanel runat="server" ID="upFilters">
+                            <ContentTemplate>
+                                <div class="row">
+
+                                    <div class="col-md-3 col-sm-4 col-md-offset-1">
+                                        <h2>Calificaciones</h2>
+                                        <%=LinesBelow()%>
+                                        <div class="container-fluid" style="margin-top: 10px;">
+                                            <div class="row" style="margin-top: 10px; margin-bottom: 10px">
+                                                <a href="http://escolar.itszapopan.edu.mx:8080/alumnos/StudentGrades.jsp">
+                                                    <p class="p-link">Semestre actual</p>
+                                                </a>
+                                                <a href="http://escolar.itszapopan.edu.mx:8080/alumnos/ConsKardex.jsp">
+                                                    <p class="p-link">Kardex</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4 col-md-offset-1">
+                                        <h2>Reinscripciones</h2>
+                                        <%=LinesBelow()%>
+                                        <div class="container-fluid" style="padding-left: 30px; padding-right: 30px">
+                                            <div class="row" style="margin-top: 10px; margin-bottom: 10px">
+                                                <a href="http://escolar.itszapopan.edu.mx:8080/alumnos/tutoriasc.jsp">
+                                                    <p class="p-link">Tutorias</p>
+                                                </a>
+                                                <a href="http://escolar.itszapopan.edu.mx:8080/alumnos/CargaAcademica.jsp">
+                                                    <p class="p-link">Carga Academica</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4 col-md-offset-1">
+                                        <h2>Evaluacion Docente</h2>
+                                        <%=LinesBelow()%>
+                                        <div class="container-fluid" style="padding-left: 30px; padding-right: 30px">
+                                            <div class="row" style="margin-top: 10px; margin-bottom: 10px">
+                                                <a href="http://escolar.itszapopan.edu.mx:8080/alumnos/evaluacion.jsp">
+                                                    <p class="p-link">Realizar Evaluación</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ContentTemplate>
+                            <Triggers>
+                            </Triggers>
+                        </asp:UpdatePanel>
+
+                        <hr />
+                        <%--<%=AQUI EL MENU %>--%>
+                    </div>
+                </nav>
+            </div>
+            <div class="bgOverlay" id="bgOverlay">
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
+            </asp:ContentPlaceHolder>
+            <div class="container-fluid containerbar-end">
+                <div class="row">
+                    <div class="col-sm-2">
+                        <%--<div class="container-fluid">
+                            <img class="imgb" id="img1" runat="server" alt="" src="Images/Icons/logo-blanco.png"
+                                style="max-width: 160px;" />
+                        </div>--%>
+                    </div>
+                    <div class=" col-sm-offset-6 col-sm-4">
+                        <%--<div class="container-fluid container-icons">
+                            <p class="p-bandera" style="margin-top: 9px; margin-right: 75px; float: right">
+                                MEX
+                            </p>
+                            <img class="bandera" id="img6" runat="server" alt="" src="Images/Icons/bandera.png"
+                                style="float: right" />
+                        </div>--%>
+                        <div class="container-fluid container-icons">
+                            <%=year %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <telerik:RadWindowManager ID="RadWindowManager1" runat="server" EnableShadow="true"
+            Skin="Office2010Blue" Modal="true" Animation="Fade" Title="Report" DestroyOnClose="true">
+            <Windows>
+                <telerik:RadWindow ID="RadWindow1" runat="server" ShowContentDuringLoad="false" Width="400px"
+                    EnableEmbeddedSkins="false" Behaviors="Default">
+                </telerik:RadWindow>
+            </Windows>
+        </telerik:RadWindowManager>
+    </form>
+</body>
+</html>

@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Control_Citas" Class="dbControlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=W8-PC\SQLEXPRESS;Initial Catalog=Control_Citas;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Control_CitasConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Categorias" Member="Categorias">
+    <Type Name="Categoria">
+      <Column Name="PKCategoria" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Tiempo" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Categoria_Cita" Member="Citas" ThisKey="PKCategoria" OtherKey="FKCategoria" Type="Cita" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Permisos" Member="Permisos">
+    <Type Name="Permiso">
+      <Column Name="PKPermiso" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FKPuesto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FKScreen" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Permiso_Puesto" Member="Puestos" ThisKey="PKPermiso" OtherKey="FKPermiso" Type="Puesto" />
+      <Association Name="Screen_Permiso" Member="Screen" ThisKey="FKScreen" OtherKey="PKScreen" Type="Screen" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Puestos" Member="Puestos">
+    <Type Name="Puesto">
+      <Column Name="PKPuesto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="FKPermiso" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Puesto_Usuario" Member="Usuarios" ThisKey="PKPuesto" OtherKey="FKPuesto" Type="Usuario" />
+      <Association Name="Permiso_Puesto" Member="Permiso" ThisKey="FKPermiso" OtherKey="PKPermiso" Type="Permiso" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Screens" Member="Screens">
+    <Type Name="Screen">
+      <Column Name="PKScreen" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="URL" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="Available" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Screen_Permiso" Member="Permisos" ThisKey="PKScreen" OtherKey="FKScreen" Type="Permiso" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Usuarios" Member="Usuarios">
+    <Type Name="Usuario">
+      <Column Name="PKUsuario" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ApellidoP" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ApellidoM" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="NEmpleado" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Contraseña" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="FKPuesto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Usuario_Cita" Member="Citas" ThisKey="PKUsuario" OtherKey="FKUsuario" Type="Cita" />
+      <Association Name="Usuario_Cita1" Member="Citas1" ThisKey="NEmpleado" OtherKey="FKNControl" Type="Cita" />
+      <Association Name="Puesto_Usuario" Member="Puesto" ThisKey="FKPuesto" OtherKey="PKPuesto" Type="Puesto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Citas" Member="Citas">
+    <Type Name="Cita">
+      <Column Name="PKNCita" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FKNControl" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FKCategoria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Atendido" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="FKUsuario" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Usuario_Cita" Member="Usuario" ThisKey="FKUsuario" OtherKey="PKUsuario" Type="Usuario" IsForeignKey="true" />
+      <Association Name="Categoria_Cita" Member="Categoria" ThisKey="FKCategoria" OtherKey="PKCategoria" Type="Categoria" IsForeignKey="true" />
+      <Association Name="Usuario_Cita1" Member="Usuario1" ThisKey="FKNControl" OtherKey="NEmpleado" Type="Usuario" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

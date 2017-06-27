@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="MasterPage2.master.cs" Inherits="MasterPage2" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <asp:ContentPlaceHolder ID="ContentChildHead" runat="server"></asp:ContentPlaceHolder>
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/general.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>       
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server">
+    <div class="container-fluid Config-container">
+        <div>
+            <div style="margin-bottom: 20px">
+                <h1 style="text-align: left; margin-bottom: 0;">
+                    Control Citas
+                </h1>
+                <%=LinesBelow()%>
+            </div>
+
+            <div class="btn-group" role="group" aria-label="Default button group">
+                <ul class="ul-nav-buttons">
+                    <%=fnLoadMenu() %>
+                </ul>
+            </div>
+        </div>
+        <asp:ContentPlaceHolder ID="ContentChild" Runat="Server"></asp:ContentPlaceHolder>        
+    </div>
+</asp:Content>
